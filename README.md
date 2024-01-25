@@ -1,1 +1,1 @@
-ansible-playbook -i inventory.ini playbook-jobizo-admin.yaml
+ansible-playbook -i inventory.ini playbook.yaml
