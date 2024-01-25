@@ -1,0 +1,22 @@
+---
+- name: Run commands on frontend server
+  hosts: shubham
+  gather_facts: false  
+
+  tasks:
+    - name: Go to jobizo-admin admin directory and pull latest code 
+      command: chdir=/home/user/project_dir git pull
+      become: true
+      register: command_output
+
+    - name: Display git pull output
+      debug:
+        var: command_output.stdout_lines
+  
+    - name: Go to jobizo admin directory and run docker build
+      command: chdir=/home/user/project_dir sudo docker-compose up -d --build
+      register: docker_output
+
+    - name: Display docker build output
+      debug:
+        var: docker_output.stdout_lines
